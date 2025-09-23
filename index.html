@@ -1,108 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-	<!-- Bootstrap JS (for mobile menu toggle) -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Machine Maintenance Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  	<div class="container-fluid">
-  	  <a class="navbar-brand" href="#">Maintenance Tracker</a>
-  	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-  	    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-  	    <span class="navbar-toggler-icon"></span>
-  	  </button>
-  	  <div class="collapse navbar-collapse" id="navbarNav">
-  	    <ul class="navbar-nav ms-auto">
-  	      <li class="nav-item">
-    	      <a class="nav-link active" aria-current="page" href="#">Home</a>
-    	    </li>
-    	    <li class="nav-item">
-    	      <a class="nav-link" href="#addMachine">Add Machine</a>
-    	    </li>
-    	  </ul>
-    	</div>
-  	</div>
-	</nav>
-  <!-- Header Section -->
-  <header class="text-center my-4">
-	 <h1>Machine Maintenance Tracker</h1>
-	</header>
-	
-		<!-- Add Machine Section -->
-	<section id="addMachine" class="container my-5">
-  	<h2 class="mb-4">Add a New Machine</h2>
-	
-  	<form id="machineForm">
-  	  <!-- Machine Name -->
-  	  <div class="mb-3">
-  	    <label for="machineName" class="form-label">Machine Name</label>
-  	    <input type="text" class="form-control" id="machineName" placeholder="Enter machine name" required>
-  	  </div>
-	
-  	  <!-- Machine Type -->
-  	  <div class="mb-3">
-  	    <label for="machineType" class="form-label">Machine Type</label>
-  	    <input type="text" class="form-control" id="machineType" placeholder="e.g., Lathe, Pump, Motor" required>
-  	  </div>
-	
-  	  <!-- Last Serviced Date -->
-  		  <div class="mb-3">
-  	    <label for="lastServiced" class="form-label">Last Serviced Date</label>
-  	    <input type="date" class="form-control" id="lastServiced" required>
-  	  </div>
-	
-  	  <!-- Service Interval -->
-  	  <div class="mb-3">
-  	    <label for="serviceInterval" class="form-label">Service Interval (days)</label>
-  	    <input type="number" class="form-control" id="serviceInterval" placeholder="e.g., 30" required>
-  	  </div>
-	
-  	  <!-- Submit Button -->
-  	  <button type="submit" class="btn btn-primary">Add Machine</button>
-  	</form>
-	</section>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Machine Maintenance Tracker</a>
+    </div>
+  </nav>
 
+  <div class="container">
+    <!-- Form -->
+    <h3>Add / Edit Machine</h3>
+    <form id="machineForm" class="row g-3 mb-4">
+      <div class="col-md-3">
+        <input type="text" id="machineName" class="form-control" placeholder="Machine Name" required>
+      </div>
+      <div class="col-md-3">
+        <input type="text" id="machineType" class="form-control" placeholder="Machine Type" required>
+      </div>
+      <div class="col-md-3">
+        <input type="date" id="lastServiced" class="form-control" required>
+      </div>
+      <div class="col-md-2">
+        <input type="number" id="serviceInterval" class="form-control" placeholder="Interval (days)" required>
+      </div>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-success w-100">Save</button>
+      </div>
+    </form>
 
-	<!-- Machine List Section -->
-	<section id="machineList" class="container my-5">
-	  <h2 class="mb-4">Machine List</h2>
-	  
-	<div class="row my-3">
-		<div class="col-md-6">
-			<input type="text" id="searchInput" class="form-control" placeholder="Search by Type or Status">
-		</div>
-	</div>
+    <!-- Search & Sort Controls -->
+    <div class="d-flex mb-3">
+      <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Type or Status">
+      <button id="sortBtn" class="btn btn-secondary">Sort by Due Date</button>
+    </div>
 
-	<button id="sortBtn" class="btn btn-secondary mb-3">Sort by Due Date</button>
+    <!-- Machine List Table -->
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Last Serviced</th>
+          <th>Interval (days)</th>
+          <th>Next Service</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="machineTableBody"></tbody>
+    </table>
+  </div>
 
-	<table class="table table-striped table-hover table-bordered mt-3">
-	  <thead class="table-dark">
-	    <tr>
-	      <th>ID</th>
-	      <th>Name</th>
-	      <th>Type</th>
-	      <th>Last Serviced</th>
-	      <th>Interval (days)</th>
-	      <th>Next Service Date</th>
-	      <th>Status</th>
-	      <th>Actions</th>
-	    </tr>
-	  </thead>
-	  <tbody id="machineTableBody"></tbody>
-	</table>
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center p-3 mt-4">
+    <p>© 2025 Machine Maintenance Tracker | Contact: support@example.com</p>
+  </footer>
 
-	</section>
-
-
-	<script src="app.js"></script>
+  <!-- Script -->
+  <script src="app.js"></script>
 </body>
 </html>
+
