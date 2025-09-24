@@ -12,8 +12,8 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
     <div class="container-fluid">
-      <div class="dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="dropdown position-static">
+        <a class="nav-link dropdown-toggle d-flex align-items-center position-relative" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="z-index: 1032;">
           <span class="bi bi-gear-fill fs-3"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -29,6 +29,7 @@
 
   <div class="container-lg pt-5 mt-5">
     <div class="text-center mb-4">
+      <img src="tracker-logo.png" alt="Tracker Logo" class="mb-3" style="max-width:120px; width:100%; height:auto;">
       <h1 class="fw-bold display-5">Machine Maintenance Dashboard</h1>
       <p class="text-muted">Track, manage, and never miss a maintenance date again.</p>
     </div>
