@@ -5,6 +5,10 @@ const machineTableBody = document.getElementById("machineTableBody");
 let editMode = false;
 let editId = null;
 
+// Machine data array
+let machines = [];
+let sortAsc = true;
+
 // Load existing machines from localStorage when page loads
 document.addEventListener("DOMContentLoaded", loadMachines);
 
@@ -152,9 +156,10 @@ function startEdit(id) {
 
   editMode = true;
   editId = id;
+}
 
-	// Search filter
-	document.getElementById("searchInput").addEventListener("keyup", function () {
+// Search filter
+document.getElementById("searchInput").addEventListener("keyup", function () {
   const filter = this.value.toLowerCase();
   const rows = machineTableBody.getElementsByTagName("tr");
 
@@ -163,30 +168,66 @@ function startEdit(id) {
     const status = row.cells[6].textContent.toLowerCase(); // Status
     if (type.includes(filter) || status.includes(filter)) {
       row.style.display = "";
-	    } else {
-	      row.style.display = "none";
-	    }
-	  });
-	});
+    } else {
+      row.style.display = "none";
+    }
+  });
+});
 
-	// 🔄 Sort by next service date
-	document.getElementById("sortBtn").addEventListener("click", function () {
-	  let machines = JSON.parse(localStorage.getItem("machines")) || [];
-  
-	  machines.sort((a, b) => {
-	    const dateA = new Date(a.lastServiced);
-	    dateA.setDate(dateA.getDate() + a.interval);
-	    const dateB = new Date(b.lastServiced);
-	    dateB.setDate(dateB.getDate() + b.interval);
-	    return dateA - dateB; // earliest first
-	  });
-	
-	  localStorage.setItem("machines", JSON.stringify(machines));
+// Sort by next service date
+document.getElementById("sortBtn").addEventListener("click", function () {
+  let machines = JSON.parse(localStorage.getItem("machines")) || [];
 
-	  // Reload table
-	  machineTableBody.innerHTML = "";
-	  loadMachines();
-	});
-  
-  
+  machines.sort((a, b) => {
+    const dateA = new Date(a.lastServiced);
+    dateA.setDate(dateA.getDate() + a.interval);
+    const dateB = new Date(b.lastServiced);
+    dateB.setDate(dateB.getDate() + b.interval);
+    return dateA - dateB; // earliest first
+  });
+
+  localStorage.setItem("machines", JSON.stringify(machines));
+
+  // Reload table
+  machineTableBody.innerHTML = "";
+  loadMachines();
+});
+
+// Function to render table
+function renderTable(data) {
+  const tbody = document.getElementById('machineTableBody');
+  tbody.innerHTML = '';
+  data.forEach((machine, idx) => {
+    const nextService = getNextServiceDate(machine.lastServiced, machine.serviceInterval);
+    const status = getStatus(nextService);
+    tbody.innerHTML += `
+      <tr>
+        <td>${idx + 1}</td>
+        <td>${machine.machineName}</td>
+        <td>${machine.machineType}</td>
+        <td>${machine.lastServiced}</td>
+        <td>${machine.serviceInterval}</td>
+        <td>${nextService}</td>
+        <td>${status}</td>
+        <td><!-- Actions here if needed --></td>
+      </tr>
+    `;
+  });
 }
+
+// Helper to calculate next service date
+function getNextServiceDate(last, interval) {
+  const date = new Date(last);
+  date.setDate(date.getDate() + parseInt(interval));
+  return date.toISOString().split('T')[0];
+}
+
+// Helper to get status
+function getStatus(nextService) {
+  const today = new Date().toISOString().split('T')[0];
+  if (nextService <= today) return 'Due';
+  return 'OK';
+}
+
+// Initial render
+renderTable(machines);
