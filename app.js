@@ -231,3 +231,50 @@ function getStatus(nextService) {
 
 // Initial render
 renderTable(machines);
+
+// Theme toggle
+window.addEventListener('DOMContentLoaded', () => {
+  // Theme toggle logic
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const navbar = document.querySelector('.navbar');
+  const footer = document.querySelector('footer');
+  const tableHead = document.querySelector('thead');
+
+  function setTheme(mode) {
+    if (mode === 'light') {
+      document.body.classList.remove('darkmode');
+      themeIcon.classList.remove('bi-sun');
+      themeIcon.classList.add('bi-moon');
+      navbar.classList.remove('bg-dark', 'navbar-dark');
+      navbar.classList.add('bg-light', 'navbar-light');
+      footer.classList.remove('bg-dark');
+      footer.classList.add('bg-light', 'text-dark');
+      if (tableHead) tableHead.classList.remove('table-dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.body.classList.add('darkmode');
+      themeIcon.classList.remove('bi-moon');
+      themeIcon.classList.add('bi-sun');
+      navbar.classList.remove('bg-light', 'navbar-light');
+      navbar.classList.add('bg-dark', 'navbar-dark');
+      footer.classList.remove('bg-light', 'text-dark');
+      footer.classList.add('bg-dark');
+      if (tableHead) tableHead.classList.add('table-dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  // Set initial theme from localStorage
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') {
+    setTheme('dark');
+  } else {
+    setTheme('light');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const isDark = !document.body.classList.contains('darkmode');
+    setTheme(isDark ? 'dark' : 'light');
+  });
+});
