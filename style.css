@@ -1,0 +1,52 @@
+/* ...existing code... */
+body.darkmode {
+  background-color: #181a1b !important;
+  color: #f1f1f1 !important;
+}
+body.darkmode .navbar,
+body.darkmode .footer,
+body.darkmode .table-dark,
+body.darkmode .bg-dark {
+  background-color: #23272b !important;
+}
+body.darkmode .table {
+  color: #f1f1f1;
+}
+body.darkmode .form-control,
+body.darkmode .btn {
+  background-color: #23272b !important;
+  color: #f1f1f1 !important;
+  border-color: #444 !important;
+}
+body.darkmode .table-bordered {
+  border-color: #444 !important;
+}
+body.darkmode .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #222 !important;
+}
+body.darkmode .table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #181a1b !important;
+}
+body.darkmode input,
+body.darkmode select,
+body.darkmode textarea {
+  background-color: #23272b !important;
+  color: #f1f1f1 !important;
+  border-color: #444 !important;
+}
+body.darkmode .navbar-brand, body.darkmode .navbar-nav .nav-link {
+  color: #f1f1f1 !important;
+}
+body.darkmode .btn-outline-light {
+  color: #f1f1f1 !important;
+  border-color: #f1f1f1 !important;
+}
+body.darkmode .btn-success {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+body.darkmode .btn-secondary {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+}
+/* ...existing code... */
