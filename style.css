@@ -9,32 +9,82 @@ body.darkmode .table-dark,
 body.darkmode .bg-dark {
   background-color: #2b2b23 !important;
 }
-body.darkmode .table {
-  color: #f1f1f1;
-}
-body.darkmode .form-control{
-  background-color: #000000 !important;
+
+body.darkmode .card {
+  background-color: #1f1f1f !important;
   color: #f1f1f1 !important;
+  border-color: #333 !important;
+}
+
+body.darkmode .navbar {
+  background-color: #181a1b !important;
+  color: #f1f1f1 !important;
+}
+
+/* Dark mode: footer */
+body.darkmode footer {
+  background-color: #181a1b !important;
+  color: #aaa !important;
+}
+* Dark Mode Table Styling */
+body.dark-mode table.table{
+  background-color: #1e1e1e !important;   /* Dark background */
+  color: #e0e0e0;              /* Light gray text */
+  border-collapse: collapse;
+}
+
+body.dark-mode th.table {
+  background-color: #2a2a2a;   /* Slightly lighter dark header */
+  color: #ffffff;              /* White text for headers */
+  padding: 10px;
+}
+
+body.dark-mode td.table {
+  border: 1px solid #333;      /* Subtle borders */
+  padding: 10px;
+}
+
+
+/* Table header */
+body.darkmode .table thead {
+  background-color: #2a2a2a !important;
+  color: #f1f1f1 !important;
+}
+
+/* Table rows (striped style) */
+body.darkmode .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #222 !important;
+}
+body.darkmode .table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #181a1b !important;
+}
+
+/* Dark mode: form fields */
+body.darkmode .form-control {
+  background-color: #2a2a2a !important;
+  color: #ffffff !important;
   border-color: #444 !important;
 }
+
 /* Force input text to white */
-.form-control {
+body.darkmode .form-control {
   color: #ffffff !important;
 }
 
 /* Force placeholder text to lighter gray (or white) */
-.form-control::placeholder {
-  color: #cccccc !important;  /* you can change to #ffffff if you want pure white */
-  opacity: 1; /* ensures it's not faded */
+body.darkmode .form-control::placeholder {
+  color: #bbb !important;
 }
 
 
 
+/* Dark mode: buttons */
 body.darkmode .btn {
-  background-color: #000000 !important;
-  color: #f1f1f1 !important;
+  background-color: #333 !important;
   border-color: #444 !important;
+  color: #f1f1f1 !important;
 }
+
 body.darkmode .table-bordered {
   border-color: #444 !important;
 }
@@ -62,6 +112,17 @@ body.darkmode .btn-success {
   background-color: #198754 !important;
   border-color: #198754 !important;
 }
+
+body.darkmode .btn-danger {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+
+body.darkmode .btn-primary {
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
+}
+
 body.darkmode .btn-secondary {
   background-color: #6c757d !important;
   border-color: #6c757d !important;
