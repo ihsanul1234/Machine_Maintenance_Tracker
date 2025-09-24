@@ -1,20 +1,37 @@
 /* ...existing code... */
 body.darkmode {
-  background-color: #181a1b !important;
+  background-color: #2c57b6 !important;
   color: #f1f1f1 !important;
 }
 body.darkmode .navbar,
 body.darkmode .footer,
 body.darkmode .table-dark,
 body.darkmode .bg-dark {
-  background-color: #23272b !important;
+  background-color: #2b2b23 !important;
 }
 body.darkmode .table {
   color: #f1f1f1;
 }
-body.darkmode .form-control,
+body.darkmode .form-control{
+  background-color: #000000 !important;
+  color: #f1f1f1 !important;
+  border-color: #444 !important;
+}
+/* Force input text to white */
+.form-control {
+  color: #ffffff !important;
+}
+
+/* Force placeholder text to lighter gray (or white) */
+.form-control::placeholder {
+  color: #cccccc !important;  /* you can change to #ffffff if you want pure white */
+  opacity: 1; /* ensures it's not faded */
+}
+
+
+
 body.darkmode .btn {
-  background-color: #23272b !important;
+  background-color: #000000 !important;
   color: #f1f1f1 !important;
   border-color: #444 !important;
 }
